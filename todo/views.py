@@ -26,7 +26,7 @@ class TaskDeleteView(DeleteView):
     success_url = '/'
 
 
-class TaskEditView(UpdateView):
+class TaskCompleteView(UpdateView):
     model = Task
     fields = ('is_completed',)
     success_url = '/'
