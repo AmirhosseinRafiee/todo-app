@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Task
 
 class TaskListView(ListView):
@@ -24,3 +24,12 @@ class TaskCreateView(CreateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = '/'
+
+
+class TaskEditView(UpdateView):
+    model = Task
+    fields = ('is_completed',)
+    success_url = '/'
+
+
+

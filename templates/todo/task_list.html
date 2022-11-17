@@ -52,7 +52,11 @@
 						</form>
 					</td>
 					<td>
-						<button type="submit" class="btn btn-success ms-1" style="margin:auto; display: block;">Finished</button>
+						<form method="POST" action="{% url 'todo:task-edit' pk=task.id %}" style="margin:auto; display: block;">
+							{% csrf_token %}
+							<input type="hidden" name="is_completed" value="True">
+							<button type="submit" class="btn btn-success ms-1" style="margin:auto; display: block;">Finished</button>
+						</form>
 					</td>
 					{% endif %}
 				  </tr>
