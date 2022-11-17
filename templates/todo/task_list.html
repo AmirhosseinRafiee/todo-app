@@ -43,6 +43,12 @@
 							<button type="submit" class="btn btn-danger" style="margin:auto; display: block;">Delete</button>
 						</form>
 					</td>
+					<td>
+						<form method="POST" action="{% url 'todo:task-edit' pk=task.id %}" style="margin:auto; display: block;">
+							{% csrf_token %}
+							<button type="submit" class="btn btn-danger" style="margin:auto; display: block;">Edit</button>
+						</form>
+					</td> 
 					{% else %}
 					<td>In progress</td>
 					<td>
@@ -53,6 +59,12 @@
 					</td>
 					<td>
 						<form method="POST" action="{% url 'todo:task-edit' pk=task.id %}" style="margin:auto; display: block;">
+							{% csrf_token %}
+							<button type="submit" class="btn btn-danger" style="margin:auto; display: block;">Edit</button>
+						</form>
+					</td> 
+					<td>
+						<form method="POST" action="{% url 'todo:task-complete' pk=task.id %}" style="margin:auto; display: block;">
 							{% csrf_token %}
 							<input type="hidden" name="is_completed" value="True">
 							<button type="submit" class="btn btn-success ms-1" style="margin:auto; display: block;">Finished</button>

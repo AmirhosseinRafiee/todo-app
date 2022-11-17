@@ -31,5 +31,16 @@ class TaskCompleteView(UpdateView):
     fields = ('is_completed',)
     success_url = '/'
 
+class TaskEditView(UpdateView):
+    template_name = 'todo/task_edit.html'
+    model = Task
+    fields = ('title',)
+    success_url = '/'
 
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        task = Task.objects.filter(user= self.request.user, id=pk)
+        context['tasks'] = task
+        return context
 
