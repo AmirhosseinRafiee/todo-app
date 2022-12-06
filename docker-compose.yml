@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  backend:
+    image: todoapp
+    container_name: todo-backend
+    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/app
+    ports:
+      - 8000:8000
