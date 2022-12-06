@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -11,4 +12,6 @@ class Task(models.Model):
     def __str__(self):
         return self.title
     
+    def get_absolute_api_url(self):
+        return reverse('todo:api-v1:task-detail', kwargs={'pk': self.pk})
 
