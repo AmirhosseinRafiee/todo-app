@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_yasg',
+    'django_celery_results',
     'accounts',
     'todo'
 ]
@@ -141,3 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
 	    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 	}
+
+# celery configuration
+CELERY_BROKER_URL = 'redis://redis:6379/1'

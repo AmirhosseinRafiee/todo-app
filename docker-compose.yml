@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 60 1 --loglevel warning 
+
   backend:
     image: todoapp
     container_name: todo-backend
@@ -12,3 +20,18 @@ services:
       - ./:/app
     ports:
       - 8000:8000
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: celery -A core worker -l INFO
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - backend
+    
+
+
+
