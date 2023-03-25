@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_celery_results',
     'accounts',
-    'todo'
+    'todo',
 ]
 
 MIDDLEWARE = [
@@ -144,4 +144,11 @@ REST_FRAMEWORK = {
 	}
 
 # celery configuration
+from celery.schedules import crontab
 CELERY_BROKER_URL = 'redis://redis:6379/1'
+CELERY_BEAT_SCHEDULE = {
+    'delete_completed_tasks': {
+        'task': 'todo.tasks.delete_finished_tasks',
+        'schedule': crontab(minute='*/10')
+    }
+}
